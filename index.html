@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<html>
+<head>
+    <title>Pallomeri - d3.js</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.3.0/d3.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.2/lodash.min.js"></script>
+    <style>
+    body {
+        margin: 10%;
+    }
+    </style>
+</head>
+<body>
+<div class="svg-container">
+<svg id="pallot" preserveAspectRatio="xMinYMin meet">
+</svg>
+</div>
+<script src="pallomeri.js"></script>
+<script type="text/javascript">
+    "use strict";
+
+    var data = _.range(0, 200).map(function(x) {
+        let r = Math.random();
+        return {
+            "v": Math.round((1.0 - r*r)*1000)/1000,
+            "foo": "bar"
+        };
+    });
+
+    let pallomeri = new Pallomeri('#pallot');
+    pallomeri.render(data, val => val.v);
+    pallomeri.setTextTooltip(val => "v = " + val.v);
+    //pallomeri.setHtmlClickDialog(val => "<b>v:</b> " + val.v);
+    pallomeri.setDefaultClickDialog();
+</script>
+</html>
